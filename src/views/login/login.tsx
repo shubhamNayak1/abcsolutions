@@ -63,8 +63,8 @@ const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <div className='logo-setter'>
-            <img className='logo' src="/icon.png" alt="ABS Solutions" />
+        <div className="logo-setter">
+          <img className="logo" src="/icon.png" alt="ABS Solutions" />
         </div>
         <h2 className="login-heading">Welcome</h2>
         <form onSubmit={handleLogin} autoComplete="off">

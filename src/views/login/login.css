@@ -25,14 +25,14 @@
   color: #fff;
 }
 
-.login-box .logo-setter{
+.login-box .logo-setter {
   padding-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-box .logo{
+.login-box .logo {
   border-radius: 50%;
   width: 100px; /* Adjust the size as needed */
   height: 100px; /* Must be the same as the width */

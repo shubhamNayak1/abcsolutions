@@ -17,13 +17,13 @@
   overflow: hidden; /* Prevents overflow outside the box */
 }
 
-.navbar .logo-setter{
+.navbar .logo-setter {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.navbar .logo{
+.navbar .logo {
   border-radius: 50%;
   width: 100px; /* Adjust the size as needed */
   height: 100px; /* Must be the same as the width */
