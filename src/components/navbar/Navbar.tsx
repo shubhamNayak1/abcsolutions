@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTachometerAlt, FaUser, FaUsers, FaBuilding } from 'react-icons/fa';
-import { RiLockPasswordFill } from 'react-icons/ri';
+import { FaTachometerAlt, FaUser } from 'react-icons/fa';
 
 import './Navbar.css';
 import { LogOut } from 'lucide-react';
@@ -72,7 +71,7 @@ const Navbar: React.FC = () => {
             >
               <div className="subnavMenu">
                 <div className="navlogo">
-                  <FaTachometerAlt />
+                  <FaTachometerAlt size={25} />
                 </div>
                 <div className="navlogoTittle">Dashboard</div>
               </div>
@@ -89,7 +88,7 @@ const Navbar: React.FC = () => {
             >
               <div className="subnavMenu">
                 <div className="navlogo">
-                  <FaUser />
+                  <FaUser size={25}/>
                 </div>
                 <div className="navlogoTittle">Admin</div>
               </div>

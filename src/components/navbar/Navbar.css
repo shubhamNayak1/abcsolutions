@@ -47,6 +47,7 @@
   align-items: center; /* center the icon vertically */
   margin-right: 8px; /* small gap between icon and text */
   font-size: 18px; /* adjust icon size if needed */
+  padding-bottom: 10px;
 }
 
 .navlogoTittle {
