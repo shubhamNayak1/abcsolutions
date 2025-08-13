@@ -105,7 +105,7 @@
 
 .account-menu {
   position: absolute;
-  top: 60px; /* adjust depending on your navbar height */
+  bottom: 20px;
   left: 120px; /* adjust depending on where you want it */
   background: white;
   border: 1px solid #ddd;
