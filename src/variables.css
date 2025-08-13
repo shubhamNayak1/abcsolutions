@@ -1,0 +1,16 @@
+:root {
+  /* Custom Color Variables */
+  --dark-blue: #003135;
+  --dark-green: #024950;
+  --dark-red: #964734;
+  --light-blue: #0fa4af;
+  --lighter-blue: #afdde5;
+
+  /* Common Color Names */
+  --very-light-blue: #add8e6; /* Light Blue */
+  --light-green: #90ee90; /* Light Green */
+  --light-red: #ffc0cb; /* Light Red */
+  --white: #ffffff;
+  --blue: #74bfea;
+  --bluehover: #56a6d4;
+}

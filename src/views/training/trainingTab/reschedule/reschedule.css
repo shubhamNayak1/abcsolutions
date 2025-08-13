@@ -1,0 +1,81 @@
+@import url('../../../../variables.css');
+
+.reschedule {
+  .createButtonExam {
+    display: flex;
+    justify-content: end;
+    padding-left: 1rem;
+  }
+
+  button {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--dark-red);
+  }
+
+  .cloumnDialog {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .dialogDepartment {
+    max-height: 100%;
+    .dialogDepartmentHeader {
+      font-size: medium;
+      font-weight: 500;
+    }
+    .dropdown-menu {
+      padding-top: 3px;
+    }
+    .dropdown-menu-item {
+      padding: 3px;
+    }
+  }
+
+  .justTest {
+    width: 100% !important;
+    height: 110px !important;
+    padding: 8px !important;
+    font-size: 16px !important;
+    /* border: 1px solid #ccc !important;
+    border-radius: 4px !important; */
+    box-sizing: border-box !important;
+    resize: vertical !important;
+  }
+
+  .createInductionTrainingBody {
+    padding: 0px;
+  }
+
+  .createInductionTrainingBodyrow {
+    display: block;
+    padding-bottom: 1.25rem;
+  }
+
+  .createInductionTrainingBodyrowlabel {
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  input {
+    width: -webkit-fill-available;
+    padding: 0.5rem;
+  }
+
+  select {
+    width: -webkit-fill-available;
+    padding: 0.5rem;
+  }
+
+  .cloumnDialogDiv {
+    display: flex;
+  }
+}

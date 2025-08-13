@@ -1,0 +1,105 @@
+@import url('../../variables.css');
+
+.login-container {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
+}
+
+.login-box {
+  width: 400px;
+  padding: 20px 40px 40px 40px;
+  /* padding: 40px; */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+}
+
+.login-box .logo-setter{
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box .logo{
+  border-radius: 50%;
+  width: 100px; /* Adjust the size as needed */
+  height: 100px; /* Must be the same as the width */
+  object-fit: cover;
+}
+
+.login-box .login-heading {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: larger;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* 👇 Password visibility toggle styles */
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input-wrapper input {
+  padding-right: 2.5rem;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  color: var(--dark-blue);
+  cursor: pointer;
+  color: #fff;
+}
+
+button {
+  background-color: var(--dark-blue);
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--dark-red);
+}
+
+.error-message {
+  color: rgb(255, 136, 0);
+  margin-bottom: 1rem;
+}

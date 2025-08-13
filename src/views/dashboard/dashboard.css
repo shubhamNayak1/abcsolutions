@@ -1,0 +1,55 @@
+@import url('../../variables.css');
+
+.dashboard {
+  .firstRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  .dashboardCardSection {
+    padding: 1%;
+    display: flex;
+    max-height: 40vh;
+    justify-content: space-between;
+  }
+
+  .dashboardCard {
+    min-width: 30vh;
+    height: 15vh;
+    margin-right: 10%;
+  }
+
+  .cardColoumn {
+    width: 70%;
+  }
+
+  .notification {
+    .card {
+      border-color: #f54266;
+    }
+
+    .notiCardHeader {
+      display: flex;
+      font-size: larger;
+      font-weight: 600;
+      color: #f54266;
+
+      .notiCardHeaderText {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .cardCalander {
+    .cardCalanderHeader {
+      display: flex;
+      justify-content: center;
+      font-size: large;
+      font-weight: 600;
+    }
+
+    .card {
+      width: 85%;
+      height: 85%;
+    }
+  }
+}

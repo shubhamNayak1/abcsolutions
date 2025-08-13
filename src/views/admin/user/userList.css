@@ -1,0 +1,26 @@
+@import url('../../../variables.css');
+
+.user {
+  .createUserDiv {
+    display: flex;
+    justify-content: end;
+  }
+
+  .createUser {
+    border: 0;
+    background-color: var(--blue);
+    color: white;
+    min-width: 20vh;
+    min-height: 5vh;
+    cursor: pointer;
+  }
+
+  .createUser:hover {
+    border: 0;
+    background-color: var(--bluehover);
+    color: white;
+    min-width: 20vh;
+    min-height: 5vh;
+    cursor: pointer;
+  }
+}

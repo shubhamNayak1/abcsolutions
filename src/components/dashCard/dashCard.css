@@ -1,0 +1,21 @@
+.dash-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 16px 0;
+  min-height: fit-content;
+}
+
+.dash-card-header {
+  display: flex;
+  padding: 16px;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.dash-card-body {
+  padding: 16px;
+}
