@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 120px;
   height: 100%;
   background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
   color: var(--white);
@@ -14,7 +14,6 @@
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden; /* Prevents overflow outside the box */
 }
 
 .navbar .logo-setter {
@@ -25,23 +24,38 @@
 
 .navbar .logo {
   border-radius: 50%;
-  width: 100px; /* Adjust the size as needed */
-  height: 100px; /* Must be the same as the width */
+  width: 70px; /* Adjust the size as needed */
+  height: 70px; /* Must be the same as the width */
   object-fit: cover;
 }
 
-.navbar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.navMenu {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.navbar ul li {
-  margin: 8px 0;
+.subnavMenu {
+  display: flex;
+  flex-direction: column; /* put icon and title side by side */
+  align-items: center; /* vertically center them */
+  justify-content: center; /* horizontally center in the available space */
+  width: 100%; /* take the full width of the clickable area */
+}
+
+.navlogo {
+  display: flex;
+  align-items: center; /* center the icon vertically */
+  margin-right: 8px; /* small gap between icon and text */
+  font-size: 18px; /* adjust icon size if needed */
+}
+
+.navlogoTittle {
+  font-size: 12px;
+  display: flex;
+  align-items: center; /* vertically center text */
 }
 
 .clickable-div {
-  padding: 10px 16px;
   display: flex;
   align-items: center;
   border-radius: 8px;
@@ -59,12 +73,6 @@
   font-weight: bold;
 }
 
-.subUlli {
-  list-style-type: none;
-  padding-left: 25px;
-  margin-top: 6px;
-}
-
 .subclicked {
   background: var(--dark-red);
   box-shadow: -3px 3px 10px var(--dark-red);
@@ -75,7 +83,6 @@
 .navbar a {
   color: var(--white);
   text-decoration: none;
-  display: block;
   width: 100%;
 }
 
@@ -97,19 +104,21 @@
 
 .account-menu {
   position: absolute;
-  bottom: 50px;
-  left: 40px;
-  border: 1px solid var(--dark-red);
-  border-radius: 8px;
-  width: 160px;
-  z-index: 100;
+  top: 60px; /* adjust depending on your navbar height */
+  left: 120px; /* adjust depending on where you want it */
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: black !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 9999; /* ensure it’s above navbar */
 }
 
 .account-item {
   padding: 12px 16px;
-  color: var(--white);
+  color: black;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Push icon to the far right */
@@ -117,19 +126,44 @@
 
 .account-name {
   padding: 12px 16px;
-  color: var(--white);
+  color: gray;
   cursor: default;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Push icon to the far right */
 }
 
 .account-item:hover {
-  background-color: var(--dark-red);
+  color: white;
+  background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
 }
 
 .nav-scrollable {
   flex: 1;
   overflow-y: auto;
+}
+
+.admin-submenu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: black !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 9999; /* ensure it’s above navbar */
+}
+
+.navbar .admin-submenu a {
+  color: black;
+  text-decoration: none;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: small;
+}
+
+.navbar .admin-submenu a:hover {
+  color: white;
+  background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
+  cursor: pointer;
 }

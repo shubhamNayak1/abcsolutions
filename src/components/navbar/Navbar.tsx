@@ -21,11 +21,6 @@ const Navbar: React.FC = () => {
 
   const displayInitial = username ? username.charAt(0).toUpperCase() : 'U';
 
-  const toggleMenu = (menu: string) => {
-    setOpenSubMenu(null);
-    setOpenMenu(menu);
-  };
-
   const toggleSubMenu = (subMenu: string) => {
     setOpenSubMenu(subMenu);
   };
@@ -41,6 +36,27 @@ const Navbar: React.FC = () => {
     window.location.href = '/'; // Redirect to login page
   };
 
+  const [menuPosition, setMenuPosition] = useState<{ top: number; left: number } | null>(null);
+
+  const toggleMenu = (menu: string, event?: React.MouseEvent) => {
+    setOpenSubMenu(null);
+
+    if (openMenu === menu) {
+      setOpenMenu(null);
+      setMenuPosition(null);
+    } else {
+      setOpenMenu(menu);
+
+      if (event) {
+        const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+        setMenuPosition({
+          top: rect.top, // top position relative to viewport
+          left: rect.right, // right side of the navbar
+        });
+      }
+    }
+  };
+
   return (
     <>
       <div className="navbar">
@@ -48,67 +64,76 @@ const Navbar: React.FC = () => {
           <img className="logo" src="/icon.png" alt="ABS Solutions" />
         </div>
         <div className="nav-scrollable">
-          <ul>
-            <li>
-              <Link
-                to="/dashboard"
-                onClick={() => toggleMenu('dashboard')}
-                className={`clickable-div ${openMenu === 'dashboard' ? 'clicked' : ''}`}
+          <div className="navMenu">
+            <Link
+              to="/dashboard"
+              onClick={() => toggleMenu('dashboard')}
+              className={`clickable-div ${openMenu === 'dashboard' ? 'clicked' : ''}`}
+            >
+              <div className="subnavMenu">
+                <div className="navlogo">
+                  <FaTachometerAlt />
+                </div>
+                <div className="navlogoTittle">Dashboard</div>
+              </div>
+            </Link>
+          </div>
+          <div className="navMenu">
+            <div
+              onClick={(e) => {
+                e.preventDefault(); // prevent default navigation so submenu can open
+                toggleMenu('admin', e);
+              }}
+              // onClick={() => toggleMenu('admin')}
+              className={`clickable-div ${openMenu === 'admin' ? 'clicked' : ''}`}
+            >
+              <div className="subnavMenu">
+                <div className="navlogo">
+                  <FaUser />
+                </div>
+                <div className="navlogoTittle">Admin</div>
+              </div>
+            </div>
+            {openMenu === 'admin' && menuPosition && (
+              <div
+                className="admin-submenu"
+                style={{
+                  position: 'absolute',
+                  top: menuPosition.top,
+                  left: menuPosition.left + 20, // small gap from navbar
+                }}
               >
-                <FaTachometerAlt />
-                &nbsp;Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/admin"
-                onClick={() => toggleMenu('admin')}
-                className={`clickable-div ${openMenu === 'admin' ? 'clicked' : ''}`}
-              >
-                <FaUser /> Admin
-              </Link>
-              {openMenu === 'admin' && (
-                <ul>
-                  <li className="subUlli">
-                    <Link
-                      to="/admin/user"
-                      onClick={() => toggleSubMenu('user')}
-                      className={`clickable-div ${openSubMenu === 'user' ? 'subclicked' : ''}`}
-                    >
-                      <FaUser /> Users
-                    </Link>
-                  </li>
-                  <li className="subUlli">
-                    <Link
-                      to="/admin/user-group"
-                      onClick={() => toggleSubMenu('userGroup')}
-                      className={`clickable-div ${openSubMenu === 'userGroup' ? 'subclicked' : ''}`}
-                    >
-                      <FaUsers /> Groups
-                    </Link>
-                  </li>
-                  <li className="subUlli">
-                    <Link
-                      to="/admin/department"
-                      onClick={() => toggleSubMenu('department')}
-                      className={`clickable-div ${openSubMenu === 'department' ? 'subclicked' : ''}`}
-                    >
-                      <FaBuilding /> Departments
-                    </Link>
-                  </li>
-                  <li className="subUlli">
-                    <Link
-                      to="/admin/password-policy"
-                      onClick={() => toggleSubMenu('passwordPolicy')}
-                      className={`clickable-div ${openSubMenu === 'passwordPolicy' ? 'subclicked' : ''}`}
-                    >
-                      <RiLockPasswordFill /> Password policy
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-          </ul>
+                <Link
+                  to="/admin/user"
+                  onClick={() => toggleSubMenu('user')}
+                  className={`clickable-div ${openSubMenu === 'user' ? 'subclicked' : ''}`}
+                >
+                  Users
+                </Link>
+                <Link
+                  to="/admin/user-group"
+                  onClick={() => toggleSubMenu('userGroup')}
+                  className={`clickable-div ${openSubMenu === 'userGroup' ? 'subclicked' : ''}`}
+                >
+                  Groups
+                </Link>
+                <Link
+                  to="/admin/department"
+                  onClick={() => toggleSubMenu('department')}
+                  className={`clickable-div ${openSubMenu === 'department' ? 'subclicked' : ''}`}
+                >
+                  Departments
+                </Link>
+                <Link
+                  to="/admin/password-policy"
+                  onClick={() => toggleSubMenu('passwordPolicy')}
+                  className={`clickable-div ${openSubMenu === 'passwordPolicy' ? 'subclicked' : ''}`}
+                >
+                  Password&nbsp;policy
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
         <div className="account" onClick={toggleAccountMenu}>
           {displayInitial}
