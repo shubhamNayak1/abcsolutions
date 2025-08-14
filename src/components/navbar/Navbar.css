@@ -39,6 +39,7 @@
   flex-direction: column; /* put icon and title side by side */
   align-items: center; /* vertically center them */
   justify-content: center; /* horizontally center in the available space */
+  margin-top: 1rem;
   width: 100%; /* take the full width of the clickable area */
 }
 
@@ -71,7 +72,7 @@
 .clicked {
   background: var(--dark-red);
   box-shadow: -3px 3px 10px var(--dark-red);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .subclicked {
@@ -147,24 +148,21 @@
 
 .admin-submenu {
   position: absolute;
+  left: 120px;
   background: white;
   border: 1px solid #ddd;
-  padding: 10px;
-  color: black !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 9999; /* ensure it’s above navbar */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 9999;
 }
 
-.navbar .admin-submenu a {
-  color: black;
-  text-decoration: none;
-  width: 100%;
+.admin-submenu div {
   padding: 8px 12px;
+  color: black;
+  cursor: pointer;
   font-size: small;
 }
 
-.navbar .admin-submenu a:hover {
+.admin-submenu div:hover {
+  background: radial-gradient(circle at 50% 50%, rgba(25,25,112,0.6) 0%, rgba(0,0,0,0.8) 70%);
   color: white;
-  background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
-  cursor: pointer;
 }
