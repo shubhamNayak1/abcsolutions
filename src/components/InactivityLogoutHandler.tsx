@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const InactivityLogoutHandler: React.FC = () => {
-  const MAX_INACTIVE_TIME = 5 * 60 * 1000; // 5 minute
-  const WARNING_TIME = 30 * 1000;
+  const MAX_INACTIVE_TIME = 5 * 60 * 1000; // 1 minute for demo
+  const WARNING_TIME = 30 * 1000; // 30 seconds before logout
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const warningRef = useRef<NodeJS.Timeout | null>(null);
@@ -11,18 +12,22 @@ const InactivityLogoutHandler: React.FC = () => {
   const [showWarning, setShowWarning] = useState(false);
   const [countdown, setCountdown] = useState(WARNING_TIME / 1000);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Check if user is logged in
+  const isLoggedIn = Boolean(localStorage.getItem('jwt'));
+
   const logout = () => {
     console.log('Logging out...');
     localStorage.removeItem('jwt');
-    window.location.href = '/';
+    navigate('/'); // Redirect to login
   };
 
   const resetTimers = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (warningRef.current) clearTimeout(warningRef.current);
     if (countdownRef.current) clearInterval(countdownRef.current);
-
-    console.log('Resetting timers');
 
     setShowWarning(false);
     setCountdown(WARNING_TIME / 1000);
@@ -51,10 +56,12 @@ const InactivityLogoutHandler: React.FC = () => {
   };
 
   useEffect(() => {
+    // Only run if user is logged in and NOT on login page
+    if (!isLoggedIn || location.pathname === '/') return;
+
     const events = ['mousemove', 'mousedown', 'keypress', 'touchstart', 'scroll'];
 
     const handleActivity = () => {
-      console.log('User activity detected');
       resetTimers();
     };
 
@@ -67,7 +74,11 @@ const InactivityLogoutHandler: React.FC = () => {
       if (warningRef.current) clearTimeout(warningRef.current);
       if (countdownRef.current) clearInterval(countdownRef.current);
     };
-  }, []);
+  }, [isLoggedIn, location.pathname]);
+
+  if (!isLoggedIn || location.pathname === '/') {
+    return null; // Don't render anything on login page or if not logged in
+  }
 
   return (
     <>
