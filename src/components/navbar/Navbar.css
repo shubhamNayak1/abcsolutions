@@ -60,19 +60,14 @@
 .clickable-div {
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  /* border-radius: 8px; */
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 15px;
+  color: #b0b0b0; /* light grey text */
 }
 
 .clickable-div:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.clicked {
-  background: var(--dark-red);
-  box-shadow: -3px 3px 10px var(--dark-red);
-  /* font-weight: bold; */
+  color: #ffffff; /* white text on hover */
 }
 
 .subclicked {
