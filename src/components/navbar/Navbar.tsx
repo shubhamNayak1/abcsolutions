@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaTachometerAlt, FaUser } from 'react-icons/fa';
 import { LogOut } from 'lucide-react';
 import './Navbar.css';
@@ -65,7 +65,6 @@ const Navbar: React.FC = () => {
           {openMenu === 'admin' && (
             <div className="admin-submenu">
               <div onClick={() => handleMenuClick('admin-user', '/admin/user')}>Users</div>
-              <div onClick={() => handleMenuClick('admin-group', '/admin/user-group')}>Groups</div>
               <div onClick={() => handleMenuClick('admin-department', '/admin/department')}>Departments</div>
               <div onClick={() => handleMenuClick('admin-password', '/admin/password-policy')}>Password&nbsp;Policy</div>
             </div>

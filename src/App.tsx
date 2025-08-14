@@ -1,16 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Dashboard from './views/dashboard/dashboard';
 import UserList from './views/admin/user/userList';
 import UserAction from './views/admin/user/userAction/userAction';
 import PasswordPolicy from './views/admin/passwordPolicy/passwordPolicy';
-import UserGroupList from './views/admin/userGroup/userGroupList';
 import DepartmentList from './views/admin/department/departmentList';
 import DepartmentAction from './views/admin/department/departmentAction/departmentAction';
 import Admin from './views/admin/admin';
-import UserGroupAction from './views/admin/userGroup/userGroupAction/userGroupAction';
 import Login from './views/login/login';
 import InactivityLogoutHandler from './components/InactivityLogoutHandler';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -75,22 +73,6 @@ const AppContent: React.FC = () => {
             }
           />
           <Route
-            path="/admin/user-group"
-            element={
-              <ProtectedRoute>
-                <UserGroupList />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/user-group/create"
-            element={
-              <ProtectedRoute>
-                <UserGroupAction />
-              </ProtectedRoute>
-            }
-          />
-          <Route
             path="/admin/department"
             element={
               <ProtectedRoute>
@@ -103,6 +85,16 @@ const AppContent: React.FC = () => {
             element={
               <ProtectedRoute>
                 <DepartmentAction />
+              </ProtectedRoute>
+            }
+          />
+
+        {/* Catch-all route to redirect to dashboard */}    
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <Navigate to="/dashboard" replace />
               </ProtectedRoute>
             }
           />
