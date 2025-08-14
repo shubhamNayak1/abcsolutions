@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaTachometerAlt, FaUser } from 'react-icons/fa';
+import { TbPasswordUser } from "react-icons/tb";
 import { LogOut } from 'lucide-react';
 import './Navbar.css';
 
@@ -79,6 +80,9 @@ const Navbar: React.FC = () => {
           <div className="account-menu">
             <div className="account-name">{username}</div>
             <hr />
+            <div className="account-change" onClick={handleLogout}>
+              Change Password&nbsp;<TbPasswordUser size={40}/>
+            </div>
             <div className="account-item" onClick={handleLogout}>
               Logout&nbsp;<LogOut />
             </div>
