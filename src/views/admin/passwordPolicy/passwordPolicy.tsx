@@ -74,7 +74,6 @@ const PasswordPolicy: React.FC = () => {
       <div className="passwordPolicy">
         <div className="header-band">Password Policy</div>
         <Card>
-          <div className="form-container">
             <form className="password-policy-form">
               <div className="form-field">
                 <label htmlFor="passwordLengthMin">Password Length (Min)</label>
@@ -206,7 +205,6 @@ const PasswordPolicy: React.FC = () => {
                 </button>
               </div>
             </form>
-          </div>
         </Card>
       </div>
     </>
