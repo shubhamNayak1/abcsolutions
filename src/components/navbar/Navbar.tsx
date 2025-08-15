@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTachometerAlt, FaUser } from 'react-icons/fa';
+import { MdSpaceDashboard,MdAdminPanelSettings } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
 import { LogOut } from 'lucide-react';
 import './Navbar.css';
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
           onClick={() => handleMenuClick('dashboard', '/dashboard')}
         >
           <div className="subnavMenu">
-            <div className="navlogo"><FaTachometerAlt size={25} /></div>
+            <div className="navlogo"><MdSpaceDashboard size={25} /></div>
             <div className="navlogoTittle">Dashboard</div>
           </div>
         </div>
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
             className="subnavMenu"
             onClick={() => setOpenMenu(openMenu === 'admin' ? null : 'admin')}
           >
-            <div className="navlogo"><FaUser size={25} /></div>
+            <div className="navlogo"><MdAdminPanelSettings size={30} /></div>
             <div className="navlogoTittle">Admin</div>
           </div>
 
