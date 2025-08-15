@@ -176,3 +176,25 @@
   background: radial-gradient(circle at 50% 50%, rgba(25,25,112,0.6) 0%, rgba(0,0,0,0.8) 70%);
   color: white;
 }
+
+.input-password-group {
+  margin-bottom: 20px;
+}
+
+.input-password-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.input-password-group input {
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  color: #000000;
+  border-style: solid;
+  border-color: #000000;
+  box-sizing: border-box;
+}
