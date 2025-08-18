@@ -198,3 +198,12 @@
   border-color: #000000;
   box-sizing: border-box;
 }
+
+.toggle-password-change {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem; 
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: black ;
+}

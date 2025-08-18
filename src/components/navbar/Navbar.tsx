@@ -2,36 +2,54 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdSpaceDashboard,MdAdminPanelSettings } from "react-icons/md";
 import { TbPasswordUser } from "react-icons/tb";
-import { LogOut } from 'lucide-react';
+import { Eye, EyeOff, LogOut } from 'lucide-react';
 import './Navbar.css';
 import DialogBox from '../dialogBox/dialogBox';
+import ChangePasswordDto from '../../dto/changepassword';
 
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [accountMenuOpen, setAccountMenuOpen] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>('');
+  const [usernameDisplay, setUsernameDisplay] = useState<string>('');
   const navigate = useNavigate();
   const [resetPassword, setResetPassword] = useState(false);
+
+  const [formData, setFormData] = useState<ChangePasswordDto>({
+    username: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleResetPasswordOpen = () => {
     setResetPassword(true);
   };
 
   const handleResetPasswordClose = () => {
+    setFormData({
+      username : usernameDisplay,
+      oldPassword : '',
+      newPassword : '',
+      confirmPassword : ''
+    });
     setResetPassword(false);
   };
 
   const handleResetPasswordSave = () => {
+    console.log(formData);
   };
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
-      setUsername(storedUsername);
+      setUsernameDisplay(storedUsername);
+      setFormData({ ...formData, ['username']: storedUsername })
     }
   }, []);
 
-  const displayInitial = username ? username.charAt(0).toUpperCase() : 'U';
+  const displayInitial = usernameDisplay ? usernameDisplay.charAt(0).toUpperCase() : 'U';
 
   const handleLogout = () => {
     localStorage.clear();
@@ -53,6 +71,11 @@ const Navbar: React.FC = () => {
     const rect = e.currentTarget.getBoundingClientRect();
     setSubmenuPos({ top: rect.top + 10});
     setOpenMenu(openMenu === 'admin' ? null : 'admin');
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
   
   return (
@@ -103,7 +126,7 @@ const Navbar: React.FC = () => {
         {displayInitial}
         {accountMenuOpen && (
           <div className="account-menu">
-            <div className="account-name">{username}</div>
+            <div className="account-name">{usernameDisplay}</div>
             <hr />
             <div className="account-change" onClick={() => handleResetPasswordOpen()}>
               Change Password&nbsp;<TbPasswordUser size={40}/>
@@ -126,9 +149,10 @@ const Navbar: React.FC = () => {
               type="text"
               name="oldPassword"
               id="oldPassword"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formData.oldPassword}
+              onChange={handleChange}
               required
+              autoComplete="off"
             />
         </div>
         <div className="input-password-group">
@@ -137,21 +161,28 @@ const Navbar: React.FC = () => {
               type="text"
               name="newPassword"
               id="newPassword"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formData.newPassword}
+              onChange={handleChange}
               required
+              autoComplete="off"
             />
         </div>
         <div className="input-password-group">
             <label htmlFor="password">Re-Enter New Password</label>
-            <input
-              type="text"
-              name="reEnterNewPassword"
-              id="reEnterNewPassword"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                id="confirmPassword"
+                autoComplete="off"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              <span className="toggle-password-change" onClick={() => setShowConfirmPassword((prev) => !prev)}>
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </span>
+            </div>
         </div>
       </DialogBox>
     </div>
