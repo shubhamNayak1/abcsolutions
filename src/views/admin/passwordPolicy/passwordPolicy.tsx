@@ -36,13 +36,13 @@ const PasswordPolicy: React.FC = () => {
         }
       })
       .catch((error) => {
-        console.error('Error creating Group. Please try again.');
+        console.error('Error loading password settings. Please try again.');
       });
   }, []);
 
   useEffect(() => {
     loadPassword();
-  }, []);
+  }, [loadPassword]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -53,161 +53,178 @@ const PasswordPolicy: React.FC = () => {
     if (passwordPresent) {
       updatePasswordSetting(formData.id, formData)
         .then((response: AxiosResponse) => {
-          toast.success('Password created successfully!');
-        })
-        .catch((error) => {
-          toast.error('Error creating password. Please try again.');
-        });
-    } else {
-      createPasswordSetting(formData)
-        .then((response: AxiosResponse) => {
           toast.success('Password updated successfully!');
         })
         .catch((error) => {
           toast.error('Error updating password. Please try again.');
         });
+    } else {
+      createPasswordSetting(formData)
+        .then((response: AxiosResponse) => {
+          toast.success('Password created successfully!');
+        })
+        .catch((error) => {
+          toast.error('Error creating password. Please try again.');
+        });
     }
   };
 
   return (
-    <>
-      <div className="passwordPolicy">
-        <div className="header-band">Password Policy</div>
-        <Card>
-            <form className="password-policy-form">
-              <div className="form-field">
-                <label htmlFor="passwordLengthMin">Password Length (Min)</label>
+    <div className="passwordPolicy">
+      <div className="header-band">Password Policy</div>
+      <Card>
+        <form className="password-policy-form">
+          
+          <div className='row'>
+              {/* Password Length Min */}
+              <div className="form-field floating-label">
                 <input
                   type="number"
                   name="passwordLengthMin"
                   id="passwordLengthMin"
                   value={formData.passwordLengthMin}
                   onChange={handleChange}
+                  placeholder=" "
                   required
                 />
+                <label htmlFor="passwordLengthMin">Password Length (Min)</label>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="passwordLengthMax">Password Length (Max)</label>
+              {/* Password Length Max */}
+              <div className="form-field floating-label">
                 <input
                   type="number"
                   name="passwordLengthMax"
                   id="passwordLengthMax"
                   value={formData.passwordLengthMax}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="passwordLengthMax">Password Length (Max)</label>
               </div>
-
-              <div className="form-field">
-                <label htmlFor="alphaMin">Alpha (Min)</label>
+          </div>
+          
+          <div className='row'>
+              {/* Alpha Min */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="alphaMin"
                   id="alphaMin"
                   value={formData.alphaMin}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="alphaMin">Alpha (Min)</label>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="numericMin">Numeric (Min)</label>
+              {/* Numeric Min */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="numericMin"
                   id="numericMin"
                   value={formData.numericMin}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="numericMin">Numeric (Min)</label>
               </div>
-
-              <div className="form-field">
-                <label htmlFor="specialCharMin">Special Character (Min)</label>
+          </div>
+          <div className='row'>
+              {/* Special Char Min */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="specialCharMin"
                   id="specialCharMin"
                   value={formData.specialCharMin}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="specialCharMin">Special Character (Min)</label>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="upperCaseMin">Upper Case (Min)</label>
+              {/* Uppercase Min */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="upperCaseMin"
                   id="upperCaseMin"
                   value={formData.upperCaseMin}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="upperCaseMin">Upper Case (Min)</label>
               </div>
+          </div>
 
-              <div className="form-field">
-                <label htmlFor="numberOfLoginAttempts">Number Of Login Attempt</label>
+          <div className='row'>
+              {/* Login Attempts */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="numberOfLoginAttempts"
                   id="numberOfLoginAttempts"
                   value={formData.numberOfLoginAttempts}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="numberOfLoginAttempts">Number Of Login Attempt</label>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="validPeriod">Valid Period (In days)</label>
+              {/* Valid Period */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="validPeriod"
                   id="validPeriod"
                   value={formData.validPeriod}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="validPeriod">Valid Period (In days)</label>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="previousPasswordAttemptTrack">
-                  Previous Password Attempt Track
-                </label>
+              {/* Previous Password Track */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="number"
                   name="previousPasswordAttemptTrack"
                   id="previousPasswordAttemptTrack"
                   value={formData.previousPasswordAttemptTrack}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="previousPasswordAttemptTrack">
+                  Previous Password Attempt Track
+                </label>
               </div>
+          </div>
 
-              <div className="form-field">
-                <label htmlFor="effectiveDate">Effective Date</label>
+          <div className='row'>
+              {/* Effective Date */}
+              <div className="form-field floating-label">
                 <input
-                  type="text"
+                  type="date"
                   name="effectiveDate"
                   id="effectiveDate"
                   value={formData.effectiveDate}
                   onChange={handleChange}
+                  placeholder=" "
                 />
+                <label htmlFor="effectiveDate">Effective Date</label>
               </div>
+          </div>
 
-              {/* <div className="form-field">
-                  <label htmlFor="justification">Remark/Justification</label>
-                  <input
-                    type="text"
-                    name="justification"
-                    id="justification"
-                    value={formData.justification}
-                    onChange={handleChange}
-                  />
-                </div> */}
-
-              <div className="form-actions">
-                <button type="button" onClick={handleSave} className="save-button">
-                  Save
-                </button>
-              </div>
-            </form>
-        </Card>
-      </div>
-    </>
+          <div className="form-actions">
+            <button type="button" onClick={handleSave} className="save-button">
+              Save
+            </button>
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 };
 

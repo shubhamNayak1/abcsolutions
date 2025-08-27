@@ -55,30 +55,6 @@ const UserAction: React.FC = () => {
         <Card>
           <div className="form-container">
             <form className="user-form">
-              {/* <div className="form-field">
-                  <label htmlFor="unit">Unit/Location</label>
-                  <select name="unit" id="unit" value={formData.unit} onChange={handleChange} required>
-                    <option value="">Select Unit/Location</option>
-                    <option value="Unit1">Unit1</option>
-                    <option value="Unit2">Unit2</option>
-                    {/* Add more options as needed */}
-              {/* </select>
-                </div> */}
-
-              {/* <div className="form-field">
-                  <label htmlFor="licenseNo">Licence No</label>
-                  <select name="licenseNo" id="licenseNo" value={formData.licenseNo} onChange={handleChange} required>
-                    <option value="">Select Licence No</option>
-                    <option value="License1">License1</option>
-                    <option value="License2">License2</option>
-                  </select>
-                </div> */}
-
-              {/* <div className="form-field">
-                  <label htmlFor="licenseType">Licence Type</label>
-                  <input type="text" name="licenseType" id="licenseType" value={formData.licenseType} onChange={handleChange} required />
-                </div> */}
-
               <div className="form-field">
                 <label htmlFor="userId">User Id</label>
                 <input
@@ -177,25 +153,7 @@ const UserAction: React.FC = () => {
                   onChange={handleChange}
                 />
               </div>
-
-              {/* <div className="form-field">
-                  <label htmlFor="group">Group</label>
-                  <select name="group" id="group" value={formData.group} onChange={handleChange}>
-                    <option value="">Select Group</option>
-                    <option value="Group1">Group1</option>
-                    <option value="Group2">Group2</option>
-                  </select>
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="department">Department</label>
-                  <select name="department" id="department" value={formData.department} onChange={handleChange}>
-                    <option value="">Select Department</option>
-                    <option value="Department1">Department1</option>
-                    <option value="Department2">Department2</option>
-                  </select>
-                </div> */}
-
+              
               <div className="form-actions">
                 <button type="button" onClick={handleCancel} className="cancel-button">
                   Cancel

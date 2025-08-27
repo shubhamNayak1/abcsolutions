@@ -118,7 +118,7 @@ const Dashboard: React.FC = () => {
               </Card>
             </div>
           </div>
-          <BarChart
+          {/* <BarChart
             title="Bar Chart Example"
             xAxis={['Category 1', 'Category 2', 'Category 3']}
             series={barChartSeries}
@@ -127,7 +127,7 @@ const Dashboard: React.FC = () => {
             title="Horizontal Bar Chart Example"
             xAxis={['Category 1', 'Category 2', 'Category 3']}
             series={horizontalBarChartSeries}
-          />
+          /> */}
           <Card>
             <SearchableTable columnLabels={columnLabels} columns={columns} data={data} />
           </Card>
