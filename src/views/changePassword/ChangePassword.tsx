@@ -86,7 +86,9 @@ const ChangePassword: React.FC = () => {
 
     if (name === 'newPassword' && policy) {
       if (value.length < policy.passwordLengthMin || value.length > policy.passwordLengthMax) {
-        errs.push(`Password must be ${policy.passwordLengthMin}-${policy.passwordLengthMax} characters`);
+        errs.push(
+          `Password must be ${policy.passwordLengthMin}-${policy.passwordLengthMax} characters`,
+        );
       }
       if ((value.match(/[A-Z]/g) || []).length < policy.upperCaseMin) {
         errs.push(`At least ${policy.upperCaseMin} uppercase letter(s)`);
@@ -179,7 +181,10 @@ const ChangePassword: React.FC = () => {
               placeholder=" "
             />
             <label htmlFor="confirmPassword">Re-Enter New Password</label>
-            <span className="toggle-password-change" onClick={() => setShowConfirmPassword((prev) => !prev)}>
+            <span
+              className="toggle-password-change"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+            >
               {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </span>
             {errors.confirmPassword && errors.confirmPassword.length > 0 && (
@@ -188,7 +193,12 @@ const ChangePassword: React.FC = () => {
           </div>
         </div>
         <div className="form-actions">
-          <button type="button" onClick={handleResetPasswordSave} className="save-button" disabled={isDisabled}>
+          <button
+            type="button"
+            onClick={handleResetPasswordSave}
+            className="save-button"
+            disabled={isDisabled}
+          >
             Save
           </button>
         </div>

@@ -15,6 +15,8 @@
 
 .search-input {
   width: 100%;
+  border: solid;
+  border-color: grey;
   padding: 10px;
   margin-bottom: 20px;
   box-sizing: border-box;
@@ -60,4 +62,15 @@ tr:hover {
   display: flex;
   justify-content: center;
   padding-top: 2%;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* horizontal scroll if too wide */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* optional: use fixed for equal spacing */
 }

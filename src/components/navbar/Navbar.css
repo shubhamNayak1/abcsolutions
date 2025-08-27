@@ -61,7 +61,9 @@
   display: flex;
   align-items: center;
   /* border-radius: 8px; */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   font-size: 15px;
   color: #b0b0b0; /* light grey text */
 }
@@ -99,7 +101,7 @@
 }
 
 .account-menu {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 120px; /* adjust depending on where you want it */
   background: white;
@@ -121,7 +123,7 @@
   font-weight: bold;
 }
 
-.account-change{
+.account-change {
   padding: 12px 16px;
   color: black;
   cursor: pointer;
@@ -157,12 +159,12 @@
 }
 
 .admin-submenu {
-  position: absolute;
+  position: fixed;
   left: 120px;
   background: white;
   border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
 }
 
 .admin-submenu div {
@@ -173,7 +175,7 @@
 }
 
 .admin-submenu div:hover {
-  background: radial-gradient(circle at 50% 50%, rgba(25,25,112,0.6) 0%, rgba(0,0,0,0.8) 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(25, 25, 112, 0.6) 0%, rgba(0, 0, 0, 0.8) 70%);
   color: white;
 }
 
@@ -202,8 +204,8 @@
 .toggle-password-change {
   position: absolute;
   top: 50%;
-  right: 0.75rem; 
+  right: 0.75rem;
   transform: translateY(-50%);
   cursor: pointer;
-  color: black ;
+  color: black;
 }

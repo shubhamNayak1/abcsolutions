@@ -35,48 +35,50 @@ const SearchableTable: React.FC<SearchableTableProps> = ({
         onChange={handleSearch}
         className="search-input"
       />
-      <table>
-        <thead>
-          {onTrainingNameClick !== undefined ? (
-            <tr>
-              <th>Select</th>
-              {columns.map((column) => (
-                <th key={column}>{columnLabels[column]}</th>
-              ))}
-            </tr>
-          ) : (
-            <tr>
-              {columns.map((column) => (
-                <th key={column}>{columnLabels[column]}</th>
-              ))}
-            </tr>
-          )}
-        </thead>
-        <tbody>
-          {filteredData.slice(0, 100).map((row, index) => (
-            <tr key={index}>
-              {onTrainingNameClick !== undefined ? (
-                <td>
-                  <span
-                    className="clickable select-column"
-                    onClick={() => onTrainingNameClick && onTrainingNameClick(row)}
-                  >
-                    Select
-                  </span>
-                </td>
-              ) : (
-                <></>
-              )}
-              {columns.map((column) => (
-                <td key={column}>{row[column]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {filteredData.length === 0 ? (
-        <div className="noRecordFound">....No&nbsp;Record&nbsp;Found....</div>
-      ) : null}
+      <div className="table-container">
+        <table>
+          <thead>
+            {onTrainingNameClick !== undefined ? (
+              <tr>
+                <th>Select</th>
+                {columns.map((column) => (
+                  <th key={column}>{columnLabels[column]}</th>
+                ))}
+              </tr>
+            ) : (
+              <tr>
+                {columns.map((column) => (
+                  <th key={column}>{columnLabels[column]}</th>
+                ))}
+              </tr>
+            )}
+          </thead>
+          <tbody>
+            {filteredData.slice(0, 100).map((row, index) => (
+              <tr key={index}>
+                {onTrainingNameClick !== undefined ? (
+                  <td>
+                    <span
+                      className="clickable select-column"
+                      onClick={() => onTrainingNameClick && onTrainingNameClick(row)}
+                    >
+                      Select
+                    </span>
+                  </td>
+                ) : (
+                  <></>
+                )}
+                {columns.map((column) => (
+                  <td key={column}>{row[column]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {filteredData.length === 0 ? (
+          <div className="noRecordFound">....No&nbsp;Record&nbsp;Found....</div>
+        ) : null}
+      </div>
     </div>
   );
 };

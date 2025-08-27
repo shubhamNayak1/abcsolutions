@@ -89,7 +89,7 @@ const AppContent: React.FC = () => {
             }
           />
 
-        {/* Catch-all route to redirect to dashboard */}    
+          {/* Catch-all route to redirect to dashboard */}
           <Route
             path="*"
             element={

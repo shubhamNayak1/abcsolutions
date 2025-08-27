@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdSpaceDashboard,MdAdminPanelSettings } from "react-icons/md";
-import { TbPasswordUser } from "react-icons/tb";
+import { MdSpaceDashboard, MdAdminPanelSettings } from 'react-icons/md';
+import { TbPasswordUser } from 'react-icons/tb';
 import { LogOut } from 'lucide-react';
 import './Navbar.css';
+import { createPortal } from 'react-dom';
 
 const Navbar: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -27,7 +28,7 @@ const Navbar: React.FC = () => {
 
   const handleMenuClick = (menu: string, path: string) => {
     setOpenMenu(null); // close menu
-    navigate(path);    // navigate to page
+    navigate(path); // navigate to page
     setAccountMenuOpen(false);
   };
 
@@ -37,9 +38,9 @@ const Navbar: React.FC = () => {
 
   const [submenuPos, setSubmenuPos] = useState({ top: 0 });
 
-  const handleAdminClick = (e: { currentTarget: { getBoundingClientRect: () => any; }; }) => {
+  const handleAdminClick = (e: { currentTarget: { getBoundingClientRect: () => any } }) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setSubmenuPos({ top: rect.top + 10});
+    setSubmenuPos({ top: rect.top + 10 });
     setOpenMenu(openMenu === 'admin' ? null : 'admin');
     setAccountMenuOpen(false);
   };
@@ -57,51 +58,73 @@ const Navbar: React.FC = () => {
           onClick={() => handleMenuClick('dashboard', '/dashboard')}
         >
           <div className="subnavMenu">
-            <div className="navlogo"><MdSpaceDashboard size={25} /></div>
+            <div className="navlogo">
+              <MdSpaceDashboard size={25} />
+            </div>
             <div className="navlogoTittle">Dashboard</div>
           </div>
         </div>
 
         {/* Admin */}
-        <div className={`clickable-div ${openMenu === 'admin' ? 'clicked' : ''}`}
+        <div
+          className={`clickable-div ${openMenu === 'admin' ? 'clicked' : ''}`}
           onClick={handleAdminClick}
         >
           <div
             className="subnavMenu"
             onClick={() => setOpenMenu(openMenu === 'admin' ? null : 'admin')}
           >
-            <div className="navlogo"><MdAdminPanelSettings size={30} /></div>
+            <div className="navlogo">
+              <MdAdminPanelSettings size={30} />
+            </div>
             <div className="navlogoTittle">Admin</div>
           </div>
 
           {/* Show submenu only while hovering or until click */}
-          {openMenu === 'admin' && (
-            <div className="admin-submenu"
-              style={{ top: submenuPos.top}}
-            >
-              <div onClick={() => handleMenuClick('admin-user', '/admin/user')}>Users</div>
-              <div onClick={() => handleMenuClick('admin-department', '/admin/department')}>Departments</div>
-              <div onClick={() => handleMenuClick('admin-password', '/admin/password-policy')}>Password&nbsp;Policy</div>
-            </div>
-          )}
+          {openMenu === 'admin' &&
+            createPortal(
+              <div
+                className="admin-submenu"
+                style={{
+                  top: submenuPos.top, // you already have this
+                  left: 120, // adjust to match your navbar
+                }}
+              >
+                <div onClick={() => handleMenuClick('admin-user', '/admin/user')}>Users</div>
+                <div onClick={() => handleMenuClick('admin-department', '/admin/department')}>
+                  Departments
+                </div>
+                <div onClick={() => handleMenuClick('admin-password', '/admin/password-policy')}>
+                  Password&nbsp;Policy
+                </div>
+              </div>,
+              document.body,
+            )}
         </div>
       </div>
 
       {/* Account section */}
       <div className="account" onClick={toggleAccountMenu}>
         {displayInitial}
-        {accountMenuOpen && (
-          <div className="account-menu">
-            <div className="account-name">{usernameDisplay}</div>
-            <hr />
-            <div className="account-change" onClick={() => handleMenuClick('admin-password', '/change-password')}>
-              Change Password&nbsp;<TbPasswordUser size={40}/>
-            </div>
-            <div className="account-item" onClick={handleLogout}>
-              Logout&nbsp;<LogOut />
-            </div>
-          </div>
-        )}
+        {accountMenuOpen &&
+          createPortal(
+            <div className="account-menu">
+              <div className="account-name">{usernameDisplay}</div>
+              <hr />
+              <div
+                className="account-change"
+                onClick={() => handleMenuClick('admin-password', '/change-password')}
+              >
+                Change Password&nbsp;
+                <TbPasswordUser size={20} />
+              </div>
+              <div className="account-item" onClick={handleLogout}>
+                Logout&nbsp;
+                <LogOut />
+              </div>
+            </div>,
+            document.body,
+          )}
       </div>
     </div>
   );
