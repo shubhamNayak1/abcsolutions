@@ -51,7 +51,7 @@ const UserAction: React.FC = () => {
   return (
     <>
       <div className="userAction">
-        <div className="header-band">User Builder</div>
+        <div className="header-band">Create User</div>
         <Card>
           <form className="user-form">
             <div className="row">
