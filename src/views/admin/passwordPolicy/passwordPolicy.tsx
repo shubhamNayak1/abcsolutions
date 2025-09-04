@@ -170,7 +170,7 @@ const PasswordPolicy: React.FC = () => {
                 onChange={handleChange}
                 placeholder=" "
               />
-              <label htmlFor="validPeriod">Valid Period (In days)</label>
+              <label htmlFor="validPeriod">Effective Days (In days)</label>
             </div>
 
             {/* Previous Password Track */}
