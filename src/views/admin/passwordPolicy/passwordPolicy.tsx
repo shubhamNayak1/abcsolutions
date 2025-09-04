@@ -3,18 +3,15 @@ import Card from '../../../components/card/card';
 import './passwordPolicy.css';
 import {
   createPasswordSetting,
-  getAllPasswordSetting,
-  updatePasswordSetting,
+  getCurrentPasswordSetting,
 } from '../../../api/passwordSetting';
 import { AxiosResponse } from 'axios';
 import PasswordSetting from '../../../dto/passwordSettings';
 import { toast } from 'react-toastify';
 
 const PasswordPolicy: React.FC = () => {
-  const [passwordPresent, setPasswordPresent] = useState(false);
 
   const [formData, setFormData] = useState<PasswordSetting>({
-    id: -1,
     passwordLengthMin: 0,
     passwordLengthMax: 0,
     alphaMin: 0,
@@ -24,15 +21,13 @@ const PasswordPolicy: React.FC = () => {
     numberOfLoginAttempts: 0,
     validPeriod: 0,
     previousPasswordAttemptTrack: 0,
-    effectiveDate: '',
   });
 
   const loadPassword = useCallback(async () => {
-    getAllPasswordSetting()
+    getCurrentPasswordSetting()
       .then((response: AxiosResponse) => {
-        if (response.data[0] !== undefined) {
-          setPasswordPresent(true);
-          setFormData(response.data[0]);
+        if (response.data !== undefined) {
+          setFormData(response.data);
         }
       })
       .catch((error) => {
@@ -50,23 +45,16 @@ const PasswordPolicy: React.FC = () => {
   };
 
   const handleSave = () => {
-    if (passwordPresent) {
-      updatePasswordSetting(formData.id, formData)
-        .then((response: AxiosResponse) => {
-          toast.success('Password updated successfully!');
-        })
-        .catch((error) => {
-          toast.error('Error updating password. Please try again.');
-        });
-    } else {
-      createPasswordSetting(formData)
-        .then((response: AxiosResponse) => {
-          toast.success('Password created successfully!');
-        })
-        .catch((error) => {
-          toast.error('Error creating password. Please try again.');
-        });
-    }
+    const payload = { ...formData };
+    delete (payload as any).id;
+    delete (payload as any).effectiveDate;
+    createPasswordSetting(payload)
+      .then((response: AxiosResponse) => {
+        toast.success('Password created successfully!');
+      })
+      .catch((error) => {
+        toast.error('Error creating password. Please try again.');
+      });
   };
 
   return (
@@ -196,21 +184,6 @@ const PasswordPolicy: React.FC = () => {
                 placeholder=" "
               />
               <label htmlFor="previousPasswordAttemptTrack">Previous Password Attempt Track</label>
-            </div>
-          </div>
-
-          <div className="row">
-            {/* Effective Date */}
-            <div className="form-field floating-label">
-              <input
-                type="date"
-                name="effectiveDate"
-                id="effectiveDate"
-                value={formData.effectiveDate}
-                onChange={handleChange}
-                placeholder=" "
-              />
-              <label htmlFor="effectiveDate">Effective Date</label>
             </div>
           </div>
 

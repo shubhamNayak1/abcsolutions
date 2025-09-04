@@ -4,8 +4,8 @@ import PasswordSetting from '../dto/passwordSettings';
 import ChangePasswordDto from '../dto/changepassword';
 import GetPasswordPolicyDto from '../dto/getPasswordPolicy';
 
-const getAllPasswordSetting = (): Promise<AxiosResponse> => {
-  return apiInstance.get('/password');
+const getCurrentPasswordSetting = (): Promise<AxiosResponse> => {
+  return apiInstance.get('/password/get-password-policy/current');
 };
 
 const getPasswordByID = (id: number): Promise<AxiosResponse> => {
@@ -18,12 +18,6 @@ const createPasswordSetting = (
   return apiInstance.post('/password', passwordSetting);
 };
 
-const updatePasswordSetting = (
-  id: number,
-  passwordSetting: PasswordSetting,
-): Promise<AxiosResponse<PasswordSetting>> => {
-  return apiInstance.put(`/password/${id}`, passwordSetting);
-};
 
 const changepasswordApi = (
   changePasswordDto: ChangePasswordDto,
@@ -38,8 +32,7 @@ const getPasswordPolicy = (): Promise<AxiosResponse<GetPasswordPolicyDto>> => {
 export {
   getPasswordByID,
   createPasswordSetting,
-  updatePasswordSetting,
-  getAllPasswordSetting,
+  getCurrentPasswordSetting,
   changepasswordApi,
   getPasswordPolicy,
 };
