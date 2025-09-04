@@ -181,12 +181,12 @@ const ChangePassword: React.FC = () => {
               placeholder=" "
             />
             <label htmlFor="confirmPassword">Re-Enter New Password</label>
-            <span
+            {/* <span
               className="toggle-password-change"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
             >
               {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </span>
+            </span> */}
             {errors.confirmPassword && errors.confirmPassword.length > 0 && (
               <p className="text-red-500 text-xs mt-1">{errors.confirmPassword[0]}</p>
             )}
